@@ -62,10 +62,7 @@ class Server
      */
     public function __set($key, $value)
     {
-        if ( isset($this->vals[ $key ]) )
-        {
-            $this->vals[ $key ] = $value;
-        }
+        $this->vals[ $key ] = $value;
     }
 
     /**
