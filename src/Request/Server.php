@@ -55,6 +55,20 @@ class Server
     }
 
     /**
+     * Allow for changes to take place to the values
+     *
+     * @param string $key
+     * @param mixed  $value
+     */
+    public function __set($key, $value)
+    {
+        if ( isset($this->vals[ $key ]) )
+        {
+            $this->vals[ $key ] = $value;
+        }
+    }
+
+    /**
      * Initialize the set of values that will be provided from here as read
      * only properties.
      *
