@@ -48,6 +48,41 @@ trait ValuesTrait
     }
 
     /**
+     * Magical fetch
+     *
+     * @param string $key
+     *
+     * @return mixed|null
+     */
+    public function __get($key)
+    {
+        return $this->get($key);
+    }
+
+    /**
+     * Magical Set
+     *
+     * @param string $key
+     * @param mixed  $value
+     */
+    public function __set($key, $value)
+    {
+        $this->set($key, $value);
+    }
+
+    /**
+     * Magic isset
+     *
+     * @param string $key
+     *
+     * @return boolean
+     */
+    public function __isset($key)
+    {
+        return isset($this->values[$key]);
+    }
+
+    /**
      * Provide the value for the specified key.  If that key does not exist, a
      * null is returned instead.
      *
