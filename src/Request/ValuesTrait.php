@@ -118,6 +118,18 @@ trait ValuesTrait
     }
 
     /**
+     * Acts like isset, but publicly callable
+     *
+     * @param string $key
+     *
+     * @return boolean
+     */
+    public function exists($key)
+    {
+        return $this->__isset($key);
+    }
+
+    /**
      * Writes the values back to the super global they came from.
      *
      * @return $this
