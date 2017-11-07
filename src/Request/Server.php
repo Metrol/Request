@@ -11,6 +11,16 @@ namespace Metrol\Request;
 /**
  * Object representing the $_SERVER super global
  *
+ * @property string $sitemode      What mode the site is in
+ * @property string $uri           The portion of the URL following the domain, or page
+ * @property string $referer       The referring page coming to this request
+ * @property string $server        The name of the web server
+ * @property string $host          The host name of the server in the request
+ * @property string $method        Which HTTP method was used (GET, POST, HEAD, PUT)
+ * @property string $docroot       The document root of the site
+ * @property string $language      The language requested in the HTML
+ * @property string $encoding      What kind of encoding was requested
+ * @property string $pagerequested The fully formed URL of the request
  */
 class Server
 {
