@@ -19,49 +19,56 @@ class Request
      *
      * @var Request\Request
      */
-    protected $requestObj;
+    protected $requestObj = null;
 
     /**
      * Object representing the $_GET super global
      *
      * @var Request\Get
      */
-    protected $getObj;
+    protected $getObj = null;
 
     /**
      * Object representing the $_POST super global
      *
      * @var Request\Post
      */
-    protected $postObj;
+    protected $postObj = null;
 
     /**
      * Object representing the $_COOKIE super global
      *
      * @var Request\Cookie
      */
-    protected $cookieObj;
+    protected $cookieObj = null;
 
     /**
      * Object representing the $_FILES super global
      *
      * @var Request\Files
      */
-    protected $filesObj;
+    protected $filesObj = null;
 
     /**
      * Object representing the $_SERVER super global
      *
      * @var Request\Server
      */
-    protected $serverObj;
+    protected $serverObj = null;
 
     /**
      * Object representing the $_SESSION super global
      *
      * @var Request\Session
      */
-    protected $sessionObj;
+    protected $sessionObj = null;
+
+    /**
+     * Object for manually assigned arguments
+     *
+     * @var Request\Args
+     */
+    protected $argsObj = null;
 
     /**
      * Initiates the Request
@@ -69,13 +76,6 @@ class Request
      */
     public function __construct()
     {
-        $this->requestObj = null;
-        $this->getObj     = null;
-        $this->postObj    = null;
-        $this->cookieObj  = null;
-        $this->filesObj   = null;
-        $this->serverObj  = null;
-        $this->sessionObj = null;
     }
 
     /**
@@ -182,5 +182,20 @@ class Request
         }
 
         return $this->sessionObj;
+    }
+
+    /**
+     * Provide the arguments object
+     *
+     * @return Request\Args
+     */
+    public function args()
+    {
+        if ( $this->argsObj === null )
+        {
+            $this->argsObj = new Request\Args;
+        }
+
+        return $this->argsObj;
     }
 }

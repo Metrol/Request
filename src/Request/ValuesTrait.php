@@ -86,7 +86,7 @@ trait ValuesTrait
      * Provide the value for the specified key.  If that key does not exist, a
      * null is returned instead.
      *
-     * @param string $key
+     * @param string|integer $key
      *
      * @return mixed|null
      */
@@ -105,7 +105,7 @@ trait ValuesTrait
     /**
      * Used to set or alter a value in this object's values.
      *
-     * @param string $key
+     * @param string|integer $key
      * @param mixed  $value
      *
      * @return $this
