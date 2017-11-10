@@ -115,6 +115,23 @@ class Cookie
     }
 
     /**
+     * Removes a value from the cookie
+     *
+     * @param string $key
+     *
+     * @return $this
+     */
+    public function delete($key)
+    {
+        if ( array_key_exists($key, $this->cookieData) )
+        {
+            unset($this->cookieData[$key]);
+        }
+
+        return $this;
+    }
+
+    /**
      * Provide the values for this object as an array
      *
      * @return array

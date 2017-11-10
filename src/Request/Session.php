@@ -103,6 +103,23 @@ class Session
     }
 
     /**
+     * Removes a value from the session
+     *
+     * @param string $key
+     *
+     * @return $this
+     */
+    public function delete($key)
+    {
+        if ( array_key_exists($key, $this->sessionData) )
+        {
+            unset($this->sessionData[$key]);
+        }
+
+        return $this;
+    }
+
+    /**
      * Acts like isset, but publicly callable
      *
      * @param string $key
