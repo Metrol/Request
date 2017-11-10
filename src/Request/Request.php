@@ -12,16 +12,14 @@ namespace Metrol\Request;
  * Object representing the $_REQUEST super global
  *
  */
-class Request
+class Request extends Immutable implements Info
 {
-    use ValuesTrait;
-
     /**
      * Initiates the Request object
      *
      */
     public function __construct()
     {
-        $this->initRequestData($_REQUEST);
+        parent::__construct($_REQUEST);
     }
 }

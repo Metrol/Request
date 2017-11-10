@@ -12,16 +12,14 @@ namespace Metrol\Request;
  * Object representing the $_FILES super global
  *
  */
-class Files
+class Files extends Immutable implements Info
 {
-    use ValuesTrait;
-
     /**
      * Initiates the Files object
      *
      */
     public function __construct()
     {
-        $this->initRequestData($_FILES);
+        parent::__construct($_FILES);
     }
 }

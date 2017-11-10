@@ -12,16 +12,14 @@ namespace Metrol\Request;
  * Object representing the $_GET super global
  *
  */
-class Get
+class Get extends Immutable implements Info
 {
-    use ValuesTrait;
-
     /**
      * Initiates the Get object
      *
      */
     public function __construct()
     {
-        $this->initRequestData($_GET);
+        parent::__construct($_GET);
     }
 }

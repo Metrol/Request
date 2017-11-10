@@ -1,35 +1,35 @@
 <?php
 /**
- * @author        "Michael Collette" <metrol@metrol.net>
- * @package       Metrol/Request
+ * @author        Michael Collette <mcollette@meetingevolution.net>
  * @version       1.0
- * @copyright (c) 2016, Michael Collette
+ * @package       Request
+ * @copyright (c) 2017, Michael Collette
  */
 
 namespace Metrol\Request;
 
-use stdClass;
-
 /**
- * Object representing the $_SESSION super global
+ * Parent for immutable HTTP request information
  *
  */
-class Session
+abstract class Immutable
 {
     /**
-     * The session array
+     * The key/value array that represents the information from the request
+     * type.
      *
      * @var array
      */
-    private $sessionData;
+    protected $keyValues = [];
 
     /**
-     * Initiates the Session object
+     * Instantiate the Immutable object
      *
+     * @param array $keyValues The list of values to store
      */
-    public function __construct()
+    public function __construct(array $keyValues)
     {
-        $this->sessionData = &$_SESSION;
+        $this->keyValues = $keyValues;
     }
 
     /**
@@ -45,17 +45,6 @@ class Session
     }
 
     /**
-     * Magical Set
-     *
-     * @param string $key
-     * @param mixed  $value
-     */
-    public function __set($key, $value)
-    {
-        $this->set($key, $value);
-    }
-
-    /**
      * Magic isset
      *
      * @param string $key
@@ -64,7 +53,7 @@ class Session
      */
     public function __isset($key)
     {
-        return isset($this->sessionData[$key]);
+        return isset($this->keyValues[$key]);
     }
 
     /**
@@ -79,27 +68,12 @@ class Session
     {
         $rtn = null;
 
-        if ( isset($this->sessionData[$key]) )
+        if ( isset($this->keyValues[$key]) )
         {
-            $rtn = $this->sessionData[$key];
+            $rtn = $this->keyValues[$key];
         }
 
         return $rtn;
-    }
-
-    /**
-     * Used to set or alter a value in this object's values.
-     *
-     * @param string|integer $key
-     * @param mixed  $value
-     *
-     * @return $this
-     */
-    public function set($key, $value)
-    {
-        $this->sessionData[$key] = $value;
-
-        return $this;
     }
 
     /**
@@ -121,19 +95,19 @@ class Session
      */
     public function getValuesArray()
     {
-        return $this->sessionData;
+        return $this->keyValues;
     }
 
     /**
      * Provide the values for this object as an object
      *
-     * @return stdClass
+     * @return \stdClass
      */
     public function getValuesObject()
     {
-        $obj = new stdClass;
+        $obj = new \stdClass;
 
-        foreach ( $this->sessionData as $key => $value )
+        foreach ( $this->keyValues as $key => $value )
         {
             $obj->$key = $value;
         }

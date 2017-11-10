@@ -22,9 +22,8 @@ namespace Metrol\Request;
  * @property string $encoding      What kind of encoding was requested
  * @property string $pagerequested The fully formed URL of the request
  */
-class Server
+class Server extends Immutable implements Info
 {
-    use ValuesTrait;
 
     /**
      * Values that will be provided
@@ -39,40 +38,52 @@ class Server
      */
     public function __construct()
     {
-        $this->initRequestData($_SERVER);
+        parent::__construct($_SERVER);
         $this->initValues();
     }
 
     /**
-     * Provide the values we've got in here.
+     * Extend the parent to account for locally created values
      *
-     * @param string $key Key for the value
+     * @param string $key
      *
-     * @return mixed
+     * @return boolean
      */
-    public function __get($key)
+    public function __isset($key)
     {
-        $rtn = null;
+        $rtn = parent::__isset($key);
 
-        $key = strtolower($key);
-
-        if ( isset($this->vals[$key]) )
+        if ( $rtn === false )
         {
-            $rtn = $this->vals[$key];
+            $rtn = isset($this->vals[$key]);
         }
 
         return $rtn;
     }
 
     /**
-     * Allow for changes to take place to the values
+     * Extend the parent to also look for locally stored values
      *
      * @param string $key
-     * @param mixed  $value
+     *
+     * @return mixed|null
      */
-    public function __set($key, $value)
+    public function get($key)
     {
-        $this->vals[ $key ] = $value;
+        $rtn = parent::get($key);
+
+        // When the parent class doesn't find something, check the local vals
+        if ( $rtn === null )
+        {
+            $key = strtolower($key);
+
+            if ( array_key_exists($key, $this->vals) )
+            {
+                $rtn = $this->vals[$key];
+            }
+        }
+
+        return $rtn;
     }
 
     /**

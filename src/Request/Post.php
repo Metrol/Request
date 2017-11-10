@@ -12,16 +12,14 @@ namespace Metrol\Request;
  * Object representing the $_POST super global
  *
  */
-class Post
+class Post extends Immutable implements Info
 {
-    use ValuesTrait;
-
     /**
      * Initiates the Post object
      *
      */
     public function __construct()
     {
-        $this->initRequestData($_POST);
+        parent::__construct($_POST);
     }
 }
