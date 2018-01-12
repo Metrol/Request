@@ -68,7 +68,7 @@ class Request
      *
      * @var Request\Assigned
      */
-    protected $argsObj = null;
+    protected $assignedObj = null;
 
     /**
      * Initiates the Request
@@ -191,11 +191,11 @@ class Request
      */
     public function assigned()
     {
-        if ( $this->argsObj === null )
+        if ( $this->assignedObj === null )
         {
-            $this->argsObj = new Request\Assigned;
+            $this->assignedObj = new Request\Assigned;
         }
 
-        return $this->argsObj;
+        return $this->assignedObj;
     }
 }
