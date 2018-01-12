@@ -11,10 +11,11 @@ namespace Metrol\Request;
 use stdClass;
 
 /**
- * Object representing manually set arguments
+ * Object representing manually set arguments to ride along with the rest of
+ * the request.
  *
  */
-class Args
+class Assigned
 {
     /**
      * An array to pass into the init routine

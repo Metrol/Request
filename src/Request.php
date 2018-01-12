@@ -66,7 +66,7 @@ class Request
     /**
      * Object for manually assigned arguments
      *
-     * @var Request\Args
+     * @var Request\Assigned
      */
     protected $argsObj = null;
 
@@ -185,15 +185,15 @@ class Request
     }
 
     /**
-     * Provide the arguments object
+     * Provide the assigned values object
      *
-     * @return Request\Args
+     * @return Request\Assigned
      */
-    public function args()
+    public function assigned()
     {
         if ( $this->argsObj === null )
         {
-            $this->argsObj = new Request\Args;
+            $this->argsObj = new Request\Assigned;
         }
 
         return $this->argsObj;
