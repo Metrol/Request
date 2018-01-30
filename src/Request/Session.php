@@ -120,6 +120,18 @@ class Session
     }
 
     /**
+     * Removes all session data
+     *
+     * @return $this
+     */
+    public function clear()
+    {
+        $this->sessionData = [];
+
+        return $this;
+    }
+
+    /**
      * Acts like isset, but publicly callable
      *
      * @param string $key
