@@ -28,9 +28,8 @@ class Server extends Immutable implements Info
     /**
      * Values that will be provided
      *
-     * @var array
      */
-    private $vals;
+    private array $vals;
 
     /**
      * Initiates the Server object
@@ -45,11 +44,8 @@ class Server extends Immutable implements Info
     /**
      * Extend the parent to account for locally created values
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function __isset($key)
+    public function __isset(string $key): bool
     {
         $rtn = parent::__isset($key);
 
@@ -64,11 +60,8 @@ class Server extends Immutable implements Info
     /**
      * Extend the parent to also look for locally stored values
      *
-     * @param string $key
-     *
-     * @return mixed|null
      */
-    public function get($key)
+    public function get(string $key): mixed
     {
         $rtn = parent::get($key);
 
@@ -91,9 +84,9 @@ class Server extends Immutable implements Info
      * only properties.
      *
      */
-    private function initValues()
+    private function initValues(): void
     {
-        $this->vals = array();
+        $this->vals = [];
 
         // Non-standard value I put in either the .htaccess or the Apache
         // config to flag for production, beta, or development.
@@ -135,7 +128,7 @@ class Server extends Immutable implements Info
             $this->vals['status'] = 200;
         }
 
-        $this->vals['pagerequested'] = 'http://'.
+        $this->vals['pagerequested'] = 'https://'.
             $this->get('HTTP_HOST').
             $this->get('REQUEST_URI');
     }
