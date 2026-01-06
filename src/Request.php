@@ -17,58 +17,50 @@ class Request
     /**
      * Object representing the $_REQUEST super global
      *
-     * @var Request\Request
      */
-    protected $requestObj = null;
+    protected Request\Request $requestObj;
 
     /**
      * Object representing the $_GET super global
      *
-     * @var Request\Get
      */
-    protected $getObj = null;
+    protected Request\Get $getObj;
 
     /**
      * Object representing the $_POST super global
      *
-     * @var Request\Post
      */
-    protected $postObj = null;
+    protected Request\Post $postObj;
 
     /**
      * Object representing the $_COOKIE super global
      *
-     * @var Request\Cookie
      */
-    protected $cookieObj = null;
+    protected Request\Cookie $cookieObj;
 
     /**
      * Object representing the $_FILES super global
      *
-     * @var Request\Files
      */
-    protected $filesObj = null;
+    protected Request\Files $filesObj;
 
     /**
      * Object representing the $_SERVER super global
      *
-     * @var Request\Server
      */
-    protected $serverObj = null;
+    protected Request\Server $serverObj;
 
     /**
      * Object representing the $_SESSION super global
      *
-     * @var Request\Session
      */
-    protected $sessionObj = null;
+    protected Request\Session $sessionObj;
 
     /**
      * Object for manually assigned arguments
      *
-     * @var Request\Assigned
      */
-    protected $assignedObj = null;
+    protected Request\Assigned $assignedObj;
 
     /**
      * Initiates the Request
@@ -79,14 +71,13 @@ class Request
     }
 
     /**
-     * Provide the object handling for the $_REQUEST super globale, providing a
+     * Provide the object handling for the $_REQUEST super globals, providing a
      * combination of the $_GET, $_POST, and $_COOKIE super global values.
      *
-     * @return Request\Request
      */
-    public function request()
+    public function request(): Request\Request
     {
-        if ( !is_object($this->requestObj) )
+        if ( !  isset($this->requestObj) )
         {
             $this->requestObj = new Request\Request;
         }
@@ -97,11 +88,10 @@ class Request
     /**
      * Provide the object handling for the $_GET super global.
      *
-     * @return Request\Get
      */
-    public function get()
+    public function get(): Request\Get
     {
-        if ( !is_object($this->getObj) )
+        if ( ! isset($this->getObj) )
         {
             $this->getObj = new Request\Get;
         }
@@ -112,11 +102,10 @@ class Request
     /**
      * Provide the object handling for the $_POST super global.
      *
-     * @return Request\Post
      */
-    public function post()
+    public function post(): Request\Post
     {
-        if ( !is_object($this->postObj) )
+        if ( ! isset($this->postObj) )
         {
             $this->postObj = new Request\Post;
         }
@@ -127,11 +116,10 @@ class Request
     /**
      * Provide the object handling for the $_FILES super global.
      *
-     * @return Request\Files
      */
-    public function files()
+    public function files(): Request\Files
     {
-        if ( !is_object($this->filesObj) )
+        if ( ! isset($this->filesObj) )
         {
             $this->filesObj = new Request\Files;
         }
@@ -142,11 +130,10 @@ class Request
     /**
      * Provide the object handling for the $_COOKIE super global.
      *
-     * @return Request\Cookie
      */
-    public function cookie()
+    public function cookie(): Request\Cookie
     {
-        if ( !is_object($this->cookieObj) )
+        if ( ! isset($this->cookieObj) )
         {
             $this->cookieObj = new Request\Cookie;
         }
@@ -157,11 +144,10 @@ class Request
     /**
      * Provide the object handling for the $_SERVER super global.
      *
-     * @return Request\Server
      */
-    public function server()
+    public function server(): Request\Server
     {
-        if ( !is_object($this->serverObj) )
+        if ( ! isset($this->serverObj) )
         {
             $this->serverObj = new Request\Server;
         }
@@ -172,11 +158,10 @@ class Request
     /**
      * Provide the object handling for the $_SESSION super global.
      *
-     * @return Request\Session
      */
-    public function session()
+    public function session(): Request\Session
     {
-        if ( !is_object($this->sessionObj) )
+        if ( ! isset($this->sessionObj) )
         {
             $this->sessionObj = new Request\Session;
         }
@@ -187,11 +172,10 @@ class Request
     /**
      * Provide the assigned values object
      *
-     * @return Request\Assigned
      */
-    public function assigned()
+    public function assigned(): Request\Assigned
     {
-        if ( $this->assignedObj === null )
+        if ( ! isset($this->assignedObj) )
         {
             $this->assignedObj = new Request\Assigned;
         }

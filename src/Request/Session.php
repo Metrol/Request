@@ -19,9 +19,8 @@ class Session
     /**
      * The session array
      *
-     * @var array
      */
-    private $sessionData;
+    private array $sessionData;
 
     /**
      * Initiates the Session object
@@ -35,11 +34,8 @@ class Session
     /**
      * Magical fetch
      *
-     * @param string $key
-     *
-     * @return mixed|null
      */
-    public function __get($key)
+    public function __get(string $key): mixed
     {
         return $this->get($key);
     }
@@ -47,10 +43,8 @@ class Session
     /**
      * Magical Set
      *
-     * @param string $key
-     * @param mixed  $value
      */
-    public function __set($key, $value)
+    public function __set(string $key, mixed $value): void
     {
         $this->set($key, $value);
     }
@@ -58,11 +52,8 @@ class Session
     /**
      * Magic isset
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function __isset($key)
+    public function __isset(string $key): bool
     {
         return isset($this->sessionData[$key]);
     }
@@ -71,11 +62,8 @@ class Session
      * Provide the value for the specified key.  If that key does not exist, a
      * null is returned instead.
      *
-     * @param string|integer $key
-     *
-     * @return mixed|null
      */
-    public function get($key)
+    public function get(string $key): mixed
     {
         $rtn = null;
 
@@ -90,12 +78,8 @@ class Session
     /**
      * Used to set or alter a value in this object's values.
      *
-     * @param string|integer $key
-     * @param mixed  $value
-     *
-     * @return $this
      */
-    public function set($key, $value)
+    public function set(string $key, mixed $value): static
     {
         $this->sessionData[$key] = $value;
 
@@ -105,11 +89,8 @@ class Session
     /**
      * Removes a value from the session
      *
-     * @param string $key
-     *
-     * @return $this
      */
-    public function delete($key)
+    public function delete(string $key): static
     {
         if ( array_key_exists($key, $this->sessionData) )
         {
@@ -122,9 +103,8 @@ class Session
     /**
      * Removes all session data
      *
-     * @return $this
      */
-    public function clear()
+    public function clear(): static
     {
         $this->sessionData = [];
 
@@ -134,11 +114,8 @@ class Session
     /**
      * Acts like isset, but publicly callable
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function exists($key)
+    public function exists(string $key): bool
     {
         return $this->__isset($key);
     }
@@ -146,9 +123,8 @@ class Session
     /**
      * Provide the values for this object as an array
      *
-     * @return array
      */
-    public function getValuesArray()
+    public function getValuesArray(): array
     {
         return $this->sessionData;
     }
@@ -156,9 +132,8 @@ class Session
     /**
      * Provide the values for this object as an object
      *
-     * @return stdClass
      */
-    public function getValuesObject()
+    public function getValuesObject(): stdClass
     {
         $obj = new stdClass;
 

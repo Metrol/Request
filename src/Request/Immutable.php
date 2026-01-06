@@ -8,6 +8,8 @@
 
 namespace Metrol\Request;
 
+use stdClass;
+
 /**
  * Parent for immutable HTTP request information
  *
@@ -18,9 +20,8 @@ abstract class Immutable
      * The key/value array that represents the information from the request
      * type.
      *
-     * @var array
      */
-    protected $keyValues = [];
+    protected array $keyValues = [];
 
     /**
      * Instantiate the Immutable object
@@ -35,11 +36,8 @@ abstract class Immutable
     /**
      * Magical fetch
      *
-     * @param string $key
-     *
-     * @return mixed|null
      */
-    public function __get($key)
+    public function __get(string $key): mixed
     {
         return $this->get($key);
     }
@@ -47,11 +45,8 @@ abstract class Immutable
     /**
      * Magic isset
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function __isset($key)
+    public function __isset(string $key): bool
     {
         return isset($this->keyValues[$key]);
     }
@@ -60,11 +55,8 @@ abstract class Immutable
      * Provide the value for the specified key.  If that key does not exist, a
      * null is returned instead.
      *
-     * @param string|integer $key
-     *
-     * @return mixed|null
      */
-    public function get($key)
+    public function get(string $key): mixed
     {
         $rtn = null;
 
@@ -79,11 +71,8 @@ abstract class Immutable
     /**
      * Acts like isset, but publicly callable
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function exists($key)
+    public function exists(string $key): bool
     {
         return $this->__isset($key);
     }
@@ -91,9 +80,8 @@ abstract class Immutable
     /**
      * Provide the values for this object as an array
      *
-     * @return array
      */
-    public function getValuesArray()
+    public function getValuesArray(): array
     {
         return $this->keyValues;
     }
@@ -101,11 +89,10 @@ abstract class Immutable
     /**
      * Provide the values for this object as an object
      *
-     * @return \stdClass
      */
-    public function getValuesObject()
+    public function getValuesObject(): stdClass
     {
-        $obj = new \stdClass;
+        $obj = new stdClass;
 
         foreach ( $this->keyValues as $key => $value )
         {

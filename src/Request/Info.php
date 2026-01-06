@@ -21,32 +21,24 @@ interface Info
      * Provide the value for the specified key.  If that key does not exist, a
      * null is returned instead.
      *
-     * @param string|integer $key
-     *
-     * @return mixed|null
      */
-    public function get($key);
+    public function get(string $key): mixed;
 
     /**
      * Acts like isset, but publicly callable
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function exists($key);
+    public function exists(string $key): bool;
 
     /**
      * Provide the values for this object as an array
      *
-     * @return array
      */
-    public function getValuesArray();
+    public function getValuesArray(): array;
 
     /**
      * Provide the values for this object as an object
      *
-     * @return stdClass
      */
-    public function getValuesObject();
+    public function getValuesObject(): stdClass;
 }

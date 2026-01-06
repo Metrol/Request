@@ -20,12 +20,11 @@ class Assigned
     /**
      * An array to pass into the init routine
      *
-     * @var array
      */
-    private $argValues = [];
+    private array $argValues = [];
 
     /**
-     * Initiates the Files object
+     * Instantiates the assigned arguments object
      *
      */
     public function __construct()
@@ -35,11 +34,8 @@ class Assigned
     /**
      * Magical fetch
      *
-     * @param string $key
-     *
-     * @return mixed|null
      */
-    public function __get($key)
+    public function __get(string $key): mixed
     {
         return $this->get($key);
     }
@@ -47,10 +43,8 @@ class Assigned
     /**
      * Magical Set
      *
-     * @param string $key
-     * @param mixed  $value
      */
-    public function __set($key, $value)
+    public function __set(string $key, mixed $value): void
     {
         $this->set($key, $value);
     }
@@ -58,11 +52,8 @@ class Assigned
     /**
      * Magic isset
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function __isset($key)
+    public function __isset(string $key): bool
     {
         return isset($this->argValues[$key]);
     }
@@ -71,11 +62,8 @@ class Assigned
      * Provide the value for the specified key.  If that key does not exist, a
      * null is returned instead.
      *
-     * @param string|integer $key
-     *
-     * @return mixed|null
      */
-    public function get($key)
+    public function get(string $key): mixed
     {
         $rtn = null;
 
@@ -90,12 +78,8 @@ class Assigned
     /**
      * Used to set or alter a value in this object's values.
      *
-     * @param string|integer $key
-     * @param mixed  $value
-     *
-     * @return $this
      */
-    public function set($key, $value)
+    public function set(string $key, mixed $value): static
     {
         $this->argValues[$key] = $value;
 
@@ -105,11 +89,8 @@ class Assigned
     /**
      * Acts like isset, but publicly callable
      *
-     * @param string $key
-     *
-     * @return boolean
      */
-    public function exists($key)
+    public function exists(string $key): bool
     {
         return $this->__isset($key);
     }
@@ -117,9 +98,8 @@ class Assigned
     /**
      * Provide the values for this object as an array
      *
-     * @return array
      */
-    public function getValuesArray()
+    public function getValuesArray(): array
     {
         return $this->argValues;
     }
@@ -127,9 +107,8 @@ class Assigned
     /**
      * Provide the values for this object as an object
      *
-     * @return stdClass
      */
-    public function getValuesObject()
+    public function getValuesObject(): stdClass
     {
         $obj = new stdClass;
 
@@ -144,11 +123,8 @@ class Assigned
     /**
      * Add a set of values to the stack
      *
-     * @param array $values
-     *
-     * @return $this
      */
-    public function addValues(array $values)
+    public function addValues(array $values): static
     {
         foreach ( $values as $key => $value )
         {
