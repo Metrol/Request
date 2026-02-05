@@ -20,7 +20,7 @@ class Session
      * The session array
      *
      */
-    private array $sessionData;
+    private array $sessionData = [];
 
     /**
      * Initiates the Session object
@@ -28,7 +28,10 @@ class Session
      */
     public function __construct()
     {
-        $this->sessionData = &$_SESSION;
+        if ( isset($_SESSION) )
+        {
+            $this->sessionData = &$_SESSION;
+        }
     }
 
     /**
